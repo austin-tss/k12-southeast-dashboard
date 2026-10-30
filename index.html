@@ -127,24 +127,9 @@ let W=null;function wxTxt(){return W?`Prattville, AL · ${Math.round(W.temp)}°F
 async function loadWx(){try{const r=await fetch('/api/weather');if(r.ok){W=await r.json();const e=$('#wx');if(e)e.textContent=wxTxt()}}catch{}}
 setInterval(()=>{const c=$('#clk'),g=$('#greet');if(c)c.textContent=clk();if(g)g.textContent=greet()},1000);
 setInterval(loadWx,15*60e3);
-let AUTHT=null;
-function secBlock(){const t=AUTHT||'pin';return `<div class="secb"><h3 style="margin:8px 0 4px">🔒 Sign-in</h3><div class="mut" style="margin-bottom:6px">You sign in with a <b>${t==='password'?'password':'5-digit PIN'}</b>.</div>
- <div class="secg"><label>Current ${t==='password'?'password':'PIN'}<input id="secCur" type="password" ${t==='pin'?'inputmode="numeric" maxlength="5"':''} autocomplete="current-password"></label>
- <label>Sign-in type<select id="secType"><option value="pin" ${t==='pin'?'selected':''}>5-digit PIN</option><option value="password" ${t==='password'?'selected':''}>Password</option></select></label>
- <label><span id="secNewL">New</span><input id="secNew" type="password" autocomplete="new-password"></label><label>Confirm<input id="secCon" type="password" autocomplete="new-password"></label></div>
- <div class="mut" id="secHint" style="font-size:12px;margin-top:4px"></div><div style="display:flex;gap:8px;margin-top:6px"><button class="btn ewdgo" type="button" id="secGo">${t==='pin'?'Reset PIN':'Change password'}</button></div><div class="err" id="secErr"></div><div id="secOk" style="color:var(--g);font-weight:600"></div></div>`}
-function secSync(){const ty=$('#secType');if(!ty)return;const p=ty.value==='pin';['secNew','secCon'].forEach(id=>{const e=$('#'+id);e.inputMode=p?'numeric':'text';e.maxLength=p?5:128});$('#secNewL').textContent=p?'New PIN':'New password';$('#secHint').textContent=p?'5 digits. Signing in submits automatically on the 5th digit.':'At least 8 characters, with at least one letter and one number.';$('#secGo').textContent=p?(AUTHT==='pin'?'Reset PIN':'Switch to PIN'):(AUTHT==='password'?'Change password':'Switch to password')}
-document.addEventListener('change',e=>{if(e.target&&e.target.id==='secType')secSync()});
-document.addEventListener('click',async e=>{if(!e.target||e.target.id!=='secGo')return;const ty=$('#secType').value,cur=$('#secCur').value,nv=$('#secNew').value,cv=$('#secCon').value;$('#secErr').textContent='';$('#secOk').textContent='';
- if(!cur){$('#secErr').textContent='Enter your current '+(AUTHT==='password'?'password':'PIN');return}
- if(ty==='pin'&&!/^\d{5}$/.test(nv)){$('#secErr').textContent='New PIN must be exactly 5 digits';return}
- if(ty==='password'&&!(nv.length>=8&&/[A-Za-z]/.test(nv)&&/\d/.test(nv))){$('#secErr').textContent='Password needs at least 8 characters, with a letter and a number';return}
- if(nv!==cv){$('#secErr').textContent="New entries don't match";return}
- const b=e.target;b.disabled=true;try{const r=await fetch('/api/auth/change',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({current:cur,type:ty,secret:nv})});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Could not save');AUTHT=j.type;['secCur','secNew','secCon'].forEach(id=>$('#'+id).value='');const bl=document.querySelector('.secb');if(bl){bl.outerHTML=secBlock();secSync()}$('#secOk').textContent=ty==='pin'?'Saved. Use your new PIN next time you sign in.':'Saved. Use your new password next time you sign in.'}catch(x){$('#secErr').textContent=x.message}finally{const g=$('#secGo');if(g)g.disabled=false}});
-async function settings(){try{const j=await (await fetch('/api/auth-type',{cache:'no-store'})).json();AUTHT=j.type||'pin'}catch(e){AUTHT=AUTHT||'pin'}setTimeout(secSync,0);let R=await api('/api/roster');let conf=null;try{RS=await api('/api/receipts/status')}catch{}
+async function settings(){let R=await api('/api/roster');let conf=null;try{RS=await api('/api/receipts/status')}catch{}
  const draw=()=>{$('#sh').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;color:var(--navy)">⚙️ Settings · Roster</h2><button class="btn" id="sClose">Close</button></div>
  ${driveBlock(true)}
- ${secBlock()}
  <div class="mut" style="margin:6px 0">Only active reps appear on the dashboard and receive data from the daily digest. Removing a rep hides them but keeps their history.</div>
  ${R.map((r,i)=>`<div class="row" style="cursor:default;flex-wrap:wrap;${r.hidden?'opacity:.55':''}"><span class="nm"><b>${esc(r.name)}</b>${r.hidden?' <span class="mut">(removed)</span>':''}<div class="mut">${esc(r.email||'')}</div></span>
   <input data-tt="${i}" value="${esc(r.territory)}" style="width:150px;border:1px solid #ccd;border-radius:6px;padding:4px" ${r.hidden?'disabled':''}>
