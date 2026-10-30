@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><script>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><script>
 try{const APPV='2026-10-30-golive2';if(localStorage.getItem('k12appv')!==APPV){localStorage.clear();sessionStorage.clear();localStorage.setItem('k12appv',APPV)}}catch(e){}
-try{delete document.documentElement.dataset.theme;localStorage.setItem("k12theme","light")}catch(e){}</script><title>K12 South East Sales Dashboard | Howard Technology Solutions</title>
+try{if(localStorage.getItem("k12theme")!=="light")document.documentElement.dataset.theme="dark"}catch(e){}</script><title>K12 South East Sales Dashboard | Howard Technology Solutions</title>
 <style>
 :root{--navy:#002b64;--red:#0098d1;--accent:#0098d1;--bg:#f4f6f9;--card:#fff;--mut:#6b7280;--g:#15803d;--y:#b45309;--r:#b91c1c}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:#111}
@@ -26,31 +26,31 @@ select{padding:5px;border-radius:6px;border:1px solid #ccc}
 .lb{grid-column:1/-1;width:100%;border:2px solid var(--navy);background:linear-gradient(#eef4ff,#fff 120px)}.lb h2{font-size:20px}.lb .tg button{padding:8px 14px;font-size:14px;font-weight:600}.lb .bar{height:10px}.lb .bar i{height:10px}
 .lb .p0{background:#fff8e1;border-left:4px solid #d4a017}.lb .p0 .bar i{background:#d4a017}.lb .p1{background:#f4f5f7;border-left:4px solid #9ca3af}.lb .p1 .bar i{background:#9ca3af}.lb .p2{background:#fbf0e6;border-left:4px solid #b06a2c}.lb .p2 .bar i{background:#b06a2c}.lb .rk{font-size:18px;width:30px}
 
-html[data-theme=disabled-dark]{--bg:#0f172a;--card:#1e293b;--mut:#a3b1c6;--navy:#93c5fd;--g:#4ade80;--y:#fbbf24;--r:#f87171;color-scheme:dark}
-html[data-theme=disabled-dark] body{color:#e5e7eb}
-html[data-theme=disabled-dark] header{background:#011b3d;border-bottom:4px solid #0098d1}
-html[data-theme=disabled-dark] .tick{background:#111c33;border-color:#334155}
-html[data-theme=disabled-dark] .t{background:#1e293b;border-color:#334155}html[data-theme=disabled-dark] .t.ytd{background:#1e3a5f;border-color:#3b82f6}
-html[data-theme=disabled-dark] .row{border-color:#334155}html[data-theme=disabled-dark] .bar{background:#334155}
-html[data-theme=disabled-dark] .st{background:#0f1a2e}
-html[data-theme=disabled-dark] .tg button,html[data-theme=disabled-dark] .btn{background:#1e293b;color:#bfdbfe;border-color:#60a5fa}
-html[data-theme=disabled-dark] .tg button.on{background:#3b82f6;color:#fff;border-color:#3b82f6}
-html[data-theme=disabled-dark] .sheet{background:#1e293b;color:#e5e7eb}
-html[data-theme=disabled-dark] input,html[data-theme=disabled-dark] textarea,html[data-theme=disabled-dark] select{background:#0f1a2e;color:#e5e7eb;border-color:#475569!important}
-html[data-theme=disabled-dark] .pad button{background:#1e293b;border-color:#475569;color:#bfdbfe}html[data-theme=disabled-dark] .pad .x{background:none}
-html[data-theme=disabled-dark] .dots i{border-color:#93c5fd}html[data-theme=disabled-dark] .dots i.f{background:#93c5fd}
-html[data-theme=disabled-dark] .lb{background:linear-gradient(#1e3a5f,#1e293b 120px);border-color:#60a5fa}
-html[data-theme=disabled-dark] .lb .p0{background:#3b3214;border-left-color:#facc15}html[data-theme=disabled-dark] .lb .p0 .bar i{background:#facc15}
-html[data-theme=disabled-dark] .lb .p1{background:#2b3442;border-left-color:#cbd5e1}html[data-theme=disabled-dark] .lb .p1 .bar i{background:#cbd5e1}
-html[data-theme=disabled-dark] .lb .p2{background:#3a2616;border-left-color:#f59e0b}html[data-theme=disabled-dark] .lb .p2 .bar i{background:#d97706}
-html[data-theme=disabled-dark] .bar i{background:#60a5fa}
-html[data-theme=disabled-dark] #tipBox,html[data-theme=disabled-dark] #welcome{background:#1e293b!important;color:#e5e7eb;border-color:#60a5fa!important}
-html[data-theme=disabled-dark] [style*="background:#fff8e1"]{background:#3b3214!important;color:#fde68a}
-html[data-theme=disabled-dark] [style*="background:#eef4ff"]{background:#1e3a5f!important;color:#e5e7eb!important;border-color:#3b82f6!important}
-html[data-theme=disabled-dark] [style*="background:#f0f7f1"]{background:#14301f!important;color:#bbf7d0!important;border-color:#166534!important}
-html[data-theme=disabled-dark] a{color:#93c5fd}html[data-theme=disabled-dark] .mail{color:#fff;background:#0098d1}
-html[data-theme=disabled-dark] .modal{background:#000a}
-#thBtn{display:none!important;background:transparent;border:1px solid #cfe0ff;color:#fff;border-radius:14px;padding:3px 10px;font-size:12px;cursor:pointer}
+html[data-theme=dark]{--bg:#0f172a;--card:#1e293b;--mut:#a3b1c6;--navy:#93c5fd;--g:#4ade80;--y:#fbbf24;--r:#f87171;color-scheme:dark}
+html[data-theme=dark] body{color:#e5e7eb}
+html[data-theme=dark] header{background:#011b3d;border-bottom:4px solid #0098d1}
+html[data-theme=dark] .tick{background:#111c33;border-color:#334155}
+html[data-theme=dark] .t{background:#1e293b;border-color:#334155}html[data-theme=dark] .t.ytd{background:#1e3a5f;border-color:#3b82f6}
+html[data-theme=dark] .row{border-color:#334155}html[data-theme=dark] .bar{background:#334155}
+html[data-theme=dark] .st{background:#0f1a2e}
+html[data-theme=dark] .tg button,html[data-theme=dark] .btn{background:#1e293b;color:#bfdbfe;border-color:#60a5fa}
+html[data-theme=dark] .tg button.on{background:#3b82f6;color:#fff;border-color:#3b82f6}
+html[data-theme=dark] .sheet{background:#1e293b;color:#e5e7eb}
+html[data-theme=dark] input,html[data-theme=dark] textarea,html[data-theme=dark] select{background:#0f1a2e;color:#e5e7eb;border-color:#475569!important}
+html[data-theme=dark] .pad button{background:#1e293b;border-color:#475569;color:#bfdbfe}html[data-theme=dark] .pad .x{background:none}
+html[data-theme=dark] .dots i{border-color:#93c5fd}html[data-theme=dark] .dots i.f{background:#93c5fd}
+html[data-theme=dark] .lb{background:linear-gradient(#1e3a5f,#1e293b 120px);border-color:#60a5fa}
+html[data-theme=dark] .lb .p0{background:#3b3214;border-left-color:#facc15}html[data-theme=dark] .lb .p0 .bar i{background:#facc15}
+html[data-theme=dark] .lb .p1{background:#2b3442;border-left-color:#cbd5e1}html[data-theme=dark] .lb .p1 .bar i{background:#cbd5e1}
+html[data-theme=dark] .lb .p2{background:#3a2616;border-left-color:#f59e0b}html[data-theme=dark] .lb .p2 .bar i{background:#d97706}
+html[data-theme=dark] .bar i{background:#60a5fa}
+html[data-theme=dark] #tipBox,html[data-theme=dark] #welcome{background:#1e293b!important;color:#e5e7eb;border-color:#60a5fa!important}
+html[data-theme=dark] [style*="background:#fff8e1"]{background:#3b3214!important;color:#fde68a}
+html[data-theme=dark] [style*="background:#eef4ff"]{background:#1e3a5f!important;color:#e5e7eb!important;border-color:#3b82f6!important}
+html[data-theme=dark] [style*="background:#f0f7f1"]{background:#14301f!important;color:#bbf7d0!important;border-color:#166534!important}
+html[data-theme=dark] a{color:#93c5fd}html[data-theme=dark] .mail{color:#fff;background:#0098d1}
+html[data-theme=dark] .modal{background:#000a}
+#thBtn{background:transparent;border:1px solid #cfe0ff;color:#fff;border-radius:14px;padding:3px 10px;font-size:12px;cursor:pointer}
 .tt h2{font-size:20px}
 body{font-family:"Roboto",Arial,Helvetica,sans-serif}
 .card h2{font-weight:700}.btn,.tg button{border-radius:4px;font-family:inherit}.tg button.on{background:var(--navy);border-color:var(--navy)}
@@ -58,12 +58,12 @@ body{font-family:"Roboto",Arial,Helvetica,sans-serif}
 .pin h2{color:var(--navy)}.pad button{border-color:#b9d9ee}.pad button:active{background:#e3f4fb}.dots i.f{background:var(--accent)}.dots i{border-color:var(--accent)}
 main.sub>.dinfo,main.sub>.tg,main.sub .tt,main.sub .topc{display:none}
 footer{text-align:center;color:var(--mut);font-size:12px;padding:18px 10px 26px}
-html[data-theme=disabled-dark]{--accent:#38bdf8}
-html[data-theme=disabled-dark] .lb{border-top-color:#38bdf8!important}html[data-theme=disabled-dark] .tg button.on{background:#0098d1;border-color:#0098d1}
-html[data-theme=disabled-dark] .dots i.f{background:#38bdf8}html[data-theme=disabled-dark] .dots i{border-color:#38bdf8}
+html[data-theme=dark]{--accent:#38bdf8}
+html[data-theme=dark] .lb{border-top-color:#38bdf8!important}html[data-theme=dark] .tg button.on{background:#0098d1;border-color:#0098d1}
+html[data-theme=dark] .dots i.f{background:#38bdf8}html[data-theme=dark] .dots i{border-color:#38bdf8}
 .ai{display:inline-block;font-size:9px;font-weight:700;color:#fff;background:#0098d1;border-radius:3px;padding:0 4px;vertical-align:middle}
 main[hidden]{display:none!important}
-#k12busy{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.55)}html[data-theme=disabled-dark] #k12busy{background:rgba(0,0,0,.5)}#k12busy .k12spin{width:56px;height:56px;border-radius:50%;border:5px solid rgba(0,152,209,.25);border-top-color:#0098d1;animation:k12sp .9s linear infinite}#k12busy .k12bt{font-weight:600;color:#002b64;background:#fff;padding:6px 14px;border-radius:16px;box-shadow:0 2px 10px #0002}html[data-theme=disabled-dark] #k12busy .k12bt{color:#e5e7eb;background:#1f2937}@keyframes k12sp{to{transform:rotate(360deg)}}:root{color-scheme:light}</style>
+#k12busy{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.55)}html[data-theme=dark] #k12busy{background:rgba(0,0,0,.5)}#k12busy .k12spin{width:56px;height:56px;border-radius:50%;border:5px solid rgba(0,152,209,.25);border-top-color:#0098d1;animation:k12sp .9s linear infinite}#k12busy .k12bt{font-weight:600;color:#002b64;background:#fff;padding:6px 14px;border-radius:16px;box-shadow:0 2px 10px #0002}html[data-theme=dark] #k12busy .k12bt{color:#e5e7eb;background:#1f2937}@keyframes k12sp{to{transform:rotate(360deg)}}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"></head><body>
 <header><div class="logo"><img src="data:image/png;base64,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" alt="Howard Technology Solutions" style="height:26px;display:block"><span class="ts">Technology Solutions</span></div><h1>K12 South East Sales Dashboard</h1><button id="gdHdr" data-gd type="button" hidden title="Connect Google Drive" style="background:transparent;border:1px solid #cfe0ff;color:#fff;border-radius:14px;padding:3px 10px;font-size:12px;cursor:pointer">☁️ Drive</button> <button id="gearBtn" type="button" title="Settings" hidden style="background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer">⚙️</button> <button id="thBtn" type="button"></button> <a href="#" id="lo" hidden onclick="signOut();return false">Sign out</a></header>
 <div id="root"></div><footer>A Tech Sourced Solutions Product</footer>
@@ -79,10 +79,10 @@ function driveBlock(full){if(RS&&RS.drive)return `<div class="g" style="margin:8
  return `<button class="mail" data-gd style="border:0;cursor:pointer;${full?'display:block;width:100%;':''}margin:8px 0;padding:12px;font-size:15px">☁️ Connect Google Drive</button>${RS&&!RS.google?'<div class="mut">Google Drive sign-in is not set up yet (needs Austin\'s Google OAuth client).</div>':''}`}
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('[data-gd]');if(!a)return;e.preventDefault();if(RS&&!RS.google){alert('Google Drive sign-in is not set up yet.');return}location.href=oauthURL()});
 function curTheme(){return document.documentElement.dataset.theme==='dark'?'dark':'light'}
-function applyTheme(t,save){t='light';save=false;if(t==='dark')document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('k12theme',t)}catch(e){}const b=document.getElementById('thBtn');if(b)b.textContent=t==='dark'?'🌙 Dark':'☀️ Light';b.title='Theme: '+(t==='dark'?'Dark':'Light')+' (tap to switch)';
+function applyTheme(t,save){if(t==='dark')document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('k12theme',t)}catch(e){}const b=document.getElementById('thBtn');if(b)b.textContent=t==='dark'?'🌙 Dark':'☀️ Light';b.title='Theme: '+(t==='dark'?'Dark':'Light')+' (tap to switch)';
  if(save&&MODE==='app')fetch('/api/prefs',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({theme:t})}).catch(()=>{})}
 document.getElementById('thBtn').onclick=()=>applyTheme(curTheme()==='dark'?'light':'dark',true);applyTheme(curTheme(),false);
-if(MODE==='app')fetch('/api/prefs',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{}).catch(()=>{});const $=s=>document.querySelector(s);
+if(MODE==='app')fetch('/api/prefs',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.theme&&j.theme!==curTheme())applyTheme(j.theme,false)}).catch(()=>{});const $=s=>document.querySelector(s);
 const $$=n=>'$'+Math.round(n||0).toLocaleString();const pct=(a,b)=>b?Math.round(a/b*100):null;
 const cls=p=>p==null?'':p>=100?'g':p>=80?'y':'r';
 function pinUI(title,sub,onDone){let v='';const max=5;let busy=false;
@@ -384,7 +384,7 @@ let TS=null,tipConfirm=false;
 async function initTips(){try{TS=await api('/api/tips')}catch{return}drawHoldsNote();if(!TS.welcomed)return showWelcome();showTip()}
 function showWelcome(){const d=document.createElement('div');d.id='welcome';d.className='card';d.style.cssText='position:fixed;left:50%;top:70px;transform:translateX(-50%);width:min(92vw,460px);z-index:20;border:2px solid var(--navy);box-shadow:0 8px 30px #0003';
  d.innerHTML=`<h2 style="margin-top:0">Welcome, Nathan 👋</h2><div style="font-size:14px;line-height:1.55">Here's your K12 South East dashboard at a glance:<br>
- • <b>Rep ticker</b>: tap a card to flip MTD/YTD<br>• <b>Team Totals</b>: the whole team against budget<br>• <b>Leaderboard</b>: YTD or MTD ordered<br>• <b>Daily quoting</b>: yesterday, today and averages per rep<br>• <b>Rep details</b>: tap any rep for their numbers, and tap ✉️ to email them<br>• <b>Hold</b>: orders on hold from Jane Frye, by rep<br>• <b>Monday Morning Report</b>: weekly rep reports, plus a year-to-date summary per rep<br>• <b>Receipts</b> (still in beta testing): snap a receipt, the AI scan fills it in, and it uploads to your Google Drive<br>• <b>Mileage</b> (still in beta testing): Tap the mic, say your stops, and the miles calculate automatically. Save a PDF to Drive, then you'll be able to copy it easily into the expense system.<br>• <b>AI expense help</b>: the AI reads your receipts and spoken trips, so you only check and fix the details</div>
+ • <b>Rep ticker</b>: tap a card to flip MTD/YTD<br>• <b>Team Totals</b>: the whole team against budget<br>• <b>Leaderboard</b>: YTD or MTD ordered<br>• <b>Daily quoting</b>: yesterday, today and averages per rep<br>• <b>Rep details</b>: tap any rep for their numbers, and tap ✉️ to email them<br>• <b>Hold</b>: orders on hold from Jane Frye, by rep<br>• <b>Monday Morning Report</b>: weekly rep reports, plus a year-to-date summary per rep<br>• <b>Receipts</b> (still in beta testing): snap a receipt, the AI scan fills it in, and it uploads to your Google Drive<br>• <b>Mileage</b> (still in beta testing): Tap the mic, say your stops, and the miles calculate automatically. Save a PDF to Drive, then you'll be able to copy it easily into the expense system.<br>• <b>AI expense help</b>: the AI reads your receipts and spoken trips, so you only check and fix the details<br>• <b>🌙/☀️ toggle</b>: switch dark and light mode</div>
  <div class="mut" style="margin-top:8px;line-height:1.5">Your dashboard updates every weekday by 9 AM Central. Orders on hold update whenever Jane Frye sends her report.</div>
  <button class="mail" id="wGo" style="border:0;margin-top:12px;cursor:pointer;width:100%">Let's go</button>`;document.body.appendChild(d);
  $('#wGo').onclick=async()=>{d.remove();await api('/api/tips',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({welcomed:true})}).catch(()=>{});TS=await api('/api/tips').catch(()=>null);showTip()}}
