@@ -66,14 +66,14 @@ document.getElementById('thBtn').onclick=()=>applyTheme(curTheme()==='dark'?'lig
 if(MODE==='app')fetch('/api/prefs',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.theme&&j.theme!==curTheme())applyTheme(j.theme,false)}).catch(()=>{});const $=s=>document.querySelector(s);
 const $$=n=>'$'+Math.round(n||0).toLocaleString();const pct=(a,b)=>b?Math.round(a/b*100):null;
 const cls=p=>p==null?'':p>=100?'g':p>=80?'y':'r';
-function pinUI(title,sub,onDone){let v='';const max=MODE==='setup'?6:8;
+function pinUI(title,sub,onDone){let v='';const max=5;let busy=false;
  $('#root').innerHTML=`<div class="pin"><h2 style="color:var(--navy)">${title}</h2><div class="mut">${sub}</div><div class="dots" id="d"></div><div class="err" id="e"></div><div class="pad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button data-n="${n}">${n}</button>`).join('')}<button class="x" data-c>Clear</button><button data-n="0">0</button><button class="x" data-b>⌫</button></div>${MODE!=='setup'?'<button class="btn" style="margin-top:16px;width:100%" id="go">Sign in</button>':'<button class="btn" style="margin-top:16px;width:100%" id="go">Save PIN</button>'}</div>`;
- const draw=()=>{$('#d').innerHTML=Array.from({length:Math.max(4,v.length)},(_, i)=>`<i class="${i<v.length?'f':''}"></i>`).join('')};draw();
- document.querySelectorAll('.pad button').forEach(b=>b.onclick=()=>{if(b.dataset.n!=null&&v.length<max)v+=b.dataset.n;else if('c'in b.dataset)v='';else if('b'in b.dataset)v=v.slice(0,-1);$('#e').textContent='';draw()});
- $('#go').onclick=async()=>{const m=await onDone(v);if(m){$('#e').textContent=m;v='';draw()}};}
+ const draw=()=>{$('#d').innerHTML=Array.from({length:5},(_, i)=>`<i class="${i<v.length?'f':''}"></i>`).join('')};draw();
+ document.querySelectorAll('.pad button').forEach(b=>b.onclick=()=>{if(b.dataset.n!=null&&v.length<max){v+=b.dataset.n;if(v.length===max&&!busy){$('#e').textContent='';draw();setTimeout(()=>$('#go').click(),120);return}}else if('c'in b.dataset)v='';else if('b'in b.dataset)v=v.slice(0,-1);$('#e').textContent='';draw()});
+ $('#go').onclick=async()=>{if(busy)return;if(v.length!==max){$('#e').textContent='Enter all 5 digits';return}busy=true;const m=await onDone(v);busy=false;if(m){$('#e').textContent=m;v='';draw()}};}
 async function post(u,b){const r=await fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});const j=await r.json().catch(()=>({}));if(r.ok&&j.token)tokSet(j.token);return r.ok?null:(j.error||'Error');}
-if(MODE==='login')pinUI('Welcome, Nathan','Enter your PIN',async v=>{const e=await post('/api/login',{pin:v});if(!e)location.reload();return e});
-else if(MODE==='setup')pinUI('Create your PIN','Choose a 4–6 digit PIN',async v=>{if(v.length<4)return 'Use at least 4 digits';const e=await post('/api/setup',{pin:v,token:new URLSearchParams(location.search).get('token')});if(!e)location.href=location.pathname;return e});
+if(MODE==='login')pinUI('Welcome, Nathan','Enter your 5-digit PIN',async v=>{const e=await post('/api/login',{pin:v});if(!e)location.reload();return e});
+else if(MODE==='setup')pinUI('Create your PIN','Choose a 5-digit PIN',async v=>{const e=await post('/api/setup',{pin:v,token:new URLSearchParams(location.search).get('token')});if(!e)location.href=location.pathname;return e});
 else app();
 let S,lb='ytd',terr='All',tab='dash';
 const ETf=o=>new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',...o});
