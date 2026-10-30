@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><script>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark" id="csMeta"><script>
 try{const APPV='2026-10-30-golive2';if(localStorage.getItem('k12appv')!==APPV){localStorage.clear();sessionStorage.clear();localStorage.setItem('k12appv',APPV)}}catch(e){}
-try{if(localStorage.getItem("k12theme")!=="light")document.documentElement.dataset.theme="dark"}catch(e){}</script><title>K12 South East Sales Dashboard | Howard Technology Solutions</title>
+try{if(localStorage.getItem("k12theme")!=="light")document.documentElement.dataset.theme="dark";else document.getElementById("csMeta").content="light"}catch(e){}</script><title>K12 South East Sales Dashboard | Howard Technology Solutions</title>
 <style>
 :root{--navy:#002b64;--red:#0098d1;--accent:#0098d1;--bg:#f4f6f9;--card:#fff;--mut:#6b7280;--g:#15803d;--y:#b45309;--r:#b91c1c}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:#111}
@@ -79,7 +79,7 @@ function driveBlock(full){if(RS&&RS.drive)return `<div class="g" style="margin:8
  return `<button class="mail" data-gd style="border:0;cursor:pointer;${full?'display:block;width:100%;':''}margin:8px 0;padding:12px;font-size:15px">☁️ Connect Google Drive</button>${RS&&!RS.google?'<div class="mut">Google Drive sign-in is not set up yet (needs Austin\'s Google OAuth client).</div>':''}`}
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('[data-gd]');if(!a)return;e.preventDefault();if(RS&&!RS.google){alert('Google Drive sign-in is not set up yet.');return}location.href=oauthURL()});
 function curTheme(){return document.documentElement.dataset.theme==='dark'?'dark':'light'}
-function applyTheme(t,save){if(t==='dark')document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('k12theme',t)}catch(e){}const b=document.getElementById('thBtn');if(b)b.textContent=t==='dark'?'🌙 Dark':'☀️ Light';b.title='Theme: '+(t==='dark'?'Dark':'Light')+' (tap to switch)';
+function applyTheme(t,save){{const m=document.getElementById('csMeta');if(m)m.content=t==='dark'?'dark':'light'}if(t==='dark')document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('k12theme',t)}catch(e){}const b=document.getElementById('thBtn');if(b)b.textContent=t==='dark'?'🌙 Dark':'☀️ Light';b.title='Theme: '+(t==='dark'?'Dark':'Light')+' (tap to switch)';
  if(save&&MODE==='app')fetch('/api/prefs',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({theme:t})}).catch(()=>{})}
 document.getElementById('thBtn').onclick=()=>applyTheme(curTheme()==='dark'?'light':'dark',true);applyTheme(curTheme(),false);
 if(MODE==='app')fetch('/api/prefs',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.theme&&j.theme!==curTheme())applyTheme(j.theme,false)}).catch(()=>{});const $=s=>document.querySelector(s);
